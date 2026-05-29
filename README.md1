@@ -1,0 +1,55 @@
+import pandas as pd
+
+# Load raw dataset
+df = pd.read_csv("../data/raw_data.csv")
+
+print("Original Dataset:")
+print(df)
+
+# ---------------------------
+# Step 1: Remove duplicates
+# ---------------------------
+df = df.drop_duplicates()
+
+# ---------------------------
+# Step 2: Handle missing values
+# ---------------------------
+
+# Fill missing names
+df["Name"] = df["Name"].fillna("Unknown")
+
+# Fill missing age with average age
+df["Age"] = df["Age"].fillna(df["Age"].mean())
+
+# Fill missing city
+df["City"] = df["City"].fillna("Unknown")
+
+# ---------------------------
+# Step 3: Standardize date format
+# ---------------------------
+df["Date"] = pd.to_datetime(
+    df["Date"],
+    format="%d/%m/%y"
+).dt.strftime("%Y-%m-%d")
+
+# ---------------------------
+# Step 4: Structural Validation
+# ---------------------------
+
+# Remove rows where ID is missing
+df = df.dropna(subset=["ID"])
+
+# Convert ID and Age to integer
+df["ID"] = df["ID"].astype(int)
+df["Age"] = df["Age"].astype(int)
+
+print("\nCleaned Dataset:")
+print(df)
+
+# ---------------------------
+# Step 5: Save cleaned data
+# ---------------------------
+df.to_csv("../output/cleaned_data.csv", index=False)
+
+print("\nData cleaning completed successfully!")
+print("Cleaned file saved in output folder.")
