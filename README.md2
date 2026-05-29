@@ -1,0 +1,37 @@
+# Data Cleaning & Structural Validation
+
+## Project Overview
+This project performs data cleaning and structural validation on raw datasets.
+
+## Features
+- Removes duplicate entries
+- Handles missing values
+- Standardizes date formats
+- Validates structure and data types
+- Generates cleaned dataset
+
+## Technologies Used
+- Python
+- Pandas
+
+## Project Structure
+
+data-cleaning-structural-validation/
+│── data/
+│── output/
+│── src/
+│── README.md
+│── requirements.txt
+
+## Run Project
+
+Install dependency:
+
+pip install -r requirements.txt
+
+Run:
+
+python src/data_cleaning.py
+
+## Output
+A cleaned dataset will be generated inside the output folder.
